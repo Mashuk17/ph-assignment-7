@@ -1,7 +1,11 @@
+"use client";
+import { ChartLine, History, House } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
     <div>
       <div className="bg-base-100 shadow-sm">
@@ -12,18 +16,30 @@ const Navbar = () => {
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <Link href="/">
-                  <button>Home</button>
+                <Link
+                  href="/"
+                  className={`h-8  ${pathname == "/" ? "btn btn-neutral" : ""}`}
+                >
+                  <House size={18} />
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/timeline">
-                  <button>Timeline</button>
+                <Link
+                  href="/timeline"
+                  className={`h-8 ${pathname == "/timeline" ? "btn btn-neutral" : ""}`}
+                >
+                  <History size={18} />
+                  Timeline
                 </Link>
               </li>
               <li>
-                <Link href="/stats">
-                  <button>Stats</button>
+                <Link
+                  href="/stats"
+                  className={`h-8 ${pathname == "/stats" ? "btn btn-neutral" : ""}`}
+                >
+                  <ChartLine size={18} />
+                  Stats
                 </Link>
               </li>
             </ul>

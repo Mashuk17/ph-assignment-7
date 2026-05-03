@@ -1,3 +1,5 @@
+import { Plus } from "lucide-react";
+
 const Banner = () => {
   return (
     <div className="py-10 bg-base-200">
@@ -10,7 +12,10 @@ const Banner = () => {
           nurture the <br /> relationships that matter most.
         </p>
         <div className="pb-5">
-          <button className="btn btn-neutral">Add a Friend</button>
+          <button className="btn btn-neutral">
+            <Plus size={20} />
+            Add a Friend
+          </button>
         </div>
       </div>
       <div className="grid grid-cols-4 w-10/12 mx-auto gap-4">
