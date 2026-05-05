@@ -125,7 +125,7 @@ const FriendsDetailsClient = ({ friend }) => {
               <p>Text</p>
             </div>
             <div
-              onClick={() => addEntry("video", name)}
+              onClick={() => addEntry("Video", name)}
               className="bg-base-200 p-4 space-y-2 flex flex-col justify-center items-center  rounded-xl"
             >
               <Image
