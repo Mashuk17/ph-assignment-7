@@ -8,6 +8,7 @@ const TimelinePage = () => {
 
   const [filter, setFilter] = useState("All");
   const [sortedOrder, setSortedOrder] = useState("newest");
+  const [search, setSearch] = useState("");
 
   const handleFilter = (type) => {
     setFilter(type);
@@ -17,10 +18,21 @@ const TimelinePage = () => {
     setSortedOrder(order);
   };
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
   const filteredTimeline =
     filter == "All" ? timeline : timeline.filter((item) => item.type == filter);
 
-  const sortedTimeline = [...filteredTimeline].sort((a, b) => {
+  const searchedTimeline = filteredTimeline.filter(
+    (item) =>
+      item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.type.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  const sortedTimeline = [...searchedTimeline].sort((a, b) => {
     if (sortedOrder == "newest") {
       return new Date(b.date) - new Date(a.date);
     } else {
@@ -65,21 +77,35 @@ const TimelinePage = () => {
             </ul>
           </div>
         </div>
-        {/* sort buttons */}
-        <div>
-          <button
-            className={`btn ${sortedOrder == "newest" ? "btn-neutral" : ""}`}
-            onClick={() => handleSortedOrder("newest")}
-          >
-            Newest
-          </button>
-          <button
-            className={`btn ${sortedOrder == "oldest" ? "btn-neutral" : ""}`}
-            onClick={() => handleSortedOrder("oldest")}
-          >
-            Oldest
-          </button>
+        <div className="flex justify-between">
+          {/* sort buttons */}
+          <div>
+            <button
+              className={`btn ${sortedOrder == "newest" ? "btn-neutral" : ""}`}
+              onClick={() => handleSortedOrder("newest")}
+            >
+              Newest
+            </button>
+            <button
+              className={`btn ${sortedOrder == "oldest" ? "btn-neutral" : ""}`}
+              onClick={() => handleSortedOrder("oldest")}
+            >
+              Oldest
+            </button>
+          </div>
+
+          {/* search field */}
+          <div>
+            <input
+              type="text"
+              placeholder="search by name or type"
+              className="input "
+              value={search}
+              onChange={(e) => handleSearch(e)}
+            />
+          </div>
         </div>
+
         {/* tileline data card */}
         <div>
           {sortedTimeline.map((value, index) => (
