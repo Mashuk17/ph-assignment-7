@@ -8,7 +8,7 @@ export default function Home() {
     <Banner></Banner>
       <div className="w-10/12 mx-auto py-10">
         <h2 className=" font-bold mb-1">Your Friends</h2>
-        <div className="grid grid-cols-4 gap-4 ">
+        <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {
           friendsData.map(friend=> <FriendCard key={friend.id} friend={friend}></FriendCard>)
         }
